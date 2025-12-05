@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naše Společné Měsíce ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 0 auto 40px;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .love-message {
+            color: #667eea;
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 0 auto 50px;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .countdown-container h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 100px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .time-box .number {
+            display: block;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .time-box .label {
+            display: block;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 5px;
+        }
+
+.decky-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* mezera mezi obrázky */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.deck-layot {
+    flex: 0 0 calc(20% - 30px); /* 5 obrázků na řadu */
+    display: flex;
+    flex-direction: column;
+}
+
+.deck-layot img {
+    width: 100%;
+    height: 250px; /* stejná výška pro všechny obrázky */
+    border-radius: 8px;
+    display: block;
+    object-fit: cover; /* obrázek vyplní box a zachová proporce */
+}
+
+.deck-info {
+    text-align: center;
+    color: white;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px #be50b9;
+}
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <h1>Naše Společné Měsíce ❤️</h1>
+        <p class="subtitle">Každý měsíc s tebou je dar</p>
+        
+        <div class="message-box">
+            <p class="love-message">
+                Miláčku, každý den s tebou je jako sen, ze kterého se nechci probudit. 
+                Tvůj úsměv rozjasňuje i ty nejtmavší dny a tvoje láska mě dělá šťastnějším, 
+                než jsem kdy myslel, že je možné. Tyto fotky jsou důkazem našich společných 
+                chvil, smíchu, objetí a lásky, která roste s každým okamžikem. 
+                Jsem tak vděčný za každou vteřinu, kterou s tebou trávím. Miluji tě! 💕
+            </p>
+        </div>
+
+        <div class="countdown-container">
+            <h2>Za tuto dobu budeme spolu rok 💘:</h2>
+            <div class="countdown" id="countdown">
+                <div class="time-box">
+                    <span class="number" id="days">0</span>
+                    <span class="label">dní</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours">0</span>
+                    <span class="label">hodin</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="minutes">0</span>
+                    <span class="label">minut</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="seconds">0</span>
+                    <span class="label">vteřin</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery" id="gallery"></div>
+    </div>
+
+
+    <section id="decky">
+        <H1>Nejpoužívanější decky </H1>
+        <div class="decky-grid">
+            <div class="deck-layot">
+                <img src="IMG_9360.png" alt="hog cycle">
+                <div class="deck-info">
+                    <H3>První měsíc 💘</h3>
+                   
+                </div>
+            </div>
+            <div class="deck-layot">
+                <img src="IMG_9361.png" alt="splashyard">
+                <div class="deck-info">
+                    <H3>Druhý měsíc 💘</H3>
+                    
+                </div>
+            </div>
+            <div class="deck-layot">
+                <img src="IMG_9362.png" alt="X-bow">
+                <div class="deck-info">
+                    <H3>Třetí měsíc 💘</H3>
+
+                </div>
+            </div>
+            <div class="deck-layot">
+                <img src="IMG_9364.png" alt="log bait">
+                <div class="deck-info">
+                    <H3>Čtvrtý měsíc 💘</H3>
+                 
+                </div>    
+            </div>
+            <div class="deck-layot">
+                <img src="IMG_9365.png" alt="hog cycle">
+                <div class="deck-info">
+                    <H3>Pátý měsíc 💘</h3>
+                </div>    
+            </div>
+            <div class="deck-layot">
+                <img src="IMG_9366.png" alt="splashyard">
+                <div class="deck-info">
+                    <H3>Šestý měsíc 💘</H3>
+                   
+                </div>
+            </div>
+            <div class="deck-layot">
+                <img src="IMG_9367.png" alt="X-bow">
+                <div class="deck-info">
+                    <H3>Sedmý měsíc 💘</H3>
+                    
+                </div>
+            </div>
+            <div class="deck-layot">
+                <img src="IMG_9368.png" alt="log bait">
+                <div class="deck-info">
+                    <H3>Osmý měsíc 💘</H3>
+                    
+                </div>    
+            </div>
+            <div class="deck-layot">
+                <img src="550E8243-061D-4359-BC5B-DEC49ECB8144.jpg" alt="hog cycle">
+                <div class="deck-info">
+                    <H3>Devátý měsíc 💘</h3>
+                    
+                </div>
+            </div>
+            <div class="deck-layot">
+                <img src="IMG_9370.png" alt="splashyard">
+                <div class="deck-info">
+                    <H3>Desátý měsíc 💘</H3>
+                    
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        
+
+        // Létající srdíčka
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 20000);
+        }
+
+        // Vytvoření několika srdíček
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createHeart, i * 1000);
+        }
+
+        setInterval(createHeart, 3000);
+
+        // Odpočet do výročí - ZMĚŇ DATUM NA VAŠE VÝROČÍ!
+        const anniversaryDate = new Date('2026-02-21T00:00:00');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = anniversaryDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.querySelector('.countdown-container h2').textContent = '🎉 Dnes máme výročí! 🎉';
+                document.getElementById('countdown').innerHTML = '<p style="color: #667eea; font-size: 1.5em;">Všechno nejlepší k našemu výročí, lásko! ❤️</p>';
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
